@@ -3,7 +3,7 @@ CC=g++
 SRCS=main.cpp \
 	lexial.cpp
 CFLAGS=-g -Wno-deprecated
-INC=-I../include
+INC=-I../include -I./include
 OBJS=$(SRCS:.c=.o)
 
 $(TARGET):$(OBJS)
