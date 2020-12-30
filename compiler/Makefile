@@ -1,9 +1,14 @@
-EXE=compiler
+TARGET=compiler
 CC=g++
-OBJ=main.o lexial.o
+SRCS=main.cpp \
+	lexial.cpp
 CFLAGS=-g -Wno-deprecated
-$(EXE):$(OBJ)
-	$(CC) $(OBJ) -o $(EXE) $(CFLAGS)
+INC=-I../include
+OBJS=$(SRCS:.c=.o)
+
+$(TARGET):$(OBJS)
+	$(CC) $(CFLAGS) $(INC) -o $@ $^
 	rm $(OBJ) *~ -f
+
 clean:
-	rm $(EXE) $(OBJ) *~ -f
+	rm $(TARGET) $(OBJS) *~ -f
