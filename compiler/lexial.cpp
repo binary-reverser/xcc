@@ -4,6 +4,17 @@
 
 using namespace std;
 
-void Lexial::getSymbol(){
+Lexial::Lexial(FILE* _file){
+	scanner = new Scanner(_file);
+}
+
+Lexial::~Lexial() {
+	delete scanner;
+}
+
+SYMBOL Lexial::getSymbol(){
 	cout<<"getSymbol() called"<<endl;
+
+	//todo:
+	return null;
 }

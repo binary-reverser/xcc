@@ -4,6 +4,7 @@
 #include<global.h>
 #include<lexial.h>
 
+FILE* fin;
 using namespace std;
 int main(){
 	const char* sourceFileName = "/home/liping/study/CParser/xcc/tests/base64.x";
@@ -14,7 +15,9 @@ int main(){
 		exit(0);
 	}
 	cout<<"File opened successfully: " << sourceFileName <<endl;
-	Lexial::getSymbol();
-
+	Lexial* lexial = new Lexial(fin);
+	lexial->getSymbol();
+	
+	delete lexial;
 	fclose(fin);
 }

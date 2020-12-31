@@ -1,11 +1,15 @@
 #ifndef LEXIAL_H
 #define LEXIAL_H
+#include<global.h>
+#include<scanner.h>
 
 class Lexial {
 private:
-
+	Scanner* scanner;
 public:
-	static void getSymbol();
+	Lexial(FILE* _file);
+	~Lexial();
+	SYMBOL getSymbol();
 };
 
 #endif

@@ -1,7 +1,7 @@
 #ifndef GLOBAL_H
 #define GLOBAL_H
 
-enum symbol
+enum SYMBOL
 {
   null,ident,excep,number,
   addi,subs,mult,divi,assign,
@@ -12,7 +12,7 @@ enum symbol
   rsv_break,rsv_char,rsv_continue,rsv_else,rsv_extern,rsv_if,rsv_in,rsv_int,rsv_out,rsv_return,rsv_string,rsv_void,rsv_while
   ,rsv_max
 };
-enum errcode
+enum ERROR_CODE
 {
   charwrong,strwrong,str2long,num2long,id2long,excpchar,
   semiconlost,commalost,typelost,identlost,semiconwrong,typewrong,
@@ -27,6 +27,6 @@ enum errcode
 };
 
 
-FILE* fin; //points to the source code
+extern FILE* fin; //points to the source code
 
 #endif
