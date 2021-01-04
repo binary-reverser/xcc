@@ -1,5 +1,6 @@
 #ifndef LEXIAL_H
 #define LEXIAL_H
+
 #include<global.h>
 #include<scanner.h>
 
@@ -9,7 +10,7 @@ private:
 public:
 	Lexial(FILE* _file);
 	~Lexial();
-	SYMBOL getSymbol();
+	TAG getSymbol();
 };
 
 #endif

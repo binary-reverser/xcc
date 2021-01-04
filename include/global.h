@@ -1,17 +1,31 @@
 #ifndef GLOBAL_H
 #define GLOBAL_H
 
-enum SYMBOL
+#include<stdio.h>
+
+enum TAG
 {
-  null,ident,excep,number,
-  addi,subs,mult,divi,assign,
-  gt,ge,lt,le,equ,nequ,
-  input,output,
-  comma,chara,strings,semicon,lparen,rparen,lbrac,rbrac,
-  rsv_min,
-  rsv_break,rsv_char,rsv_continue,rsv_else,rsv_extern,rsv_if,rsv_in,rsv_int,rsv_out,rsv_return,rsv_string,rsv_void,rsv_while
-  ,rsv_max
+  ERR, //error
+  END, //the end of file
+  ID, //identifier
+  KW_INT, KW_CHAR, KW_VOID, //data type
+  NUM, CH, STR, //constant
+  NOT, LEA, //Monocular operation
+  ADD, SUB, MUL, DIV, MOD,
+  INC, DEC,
+  GT, GE, LT, LE, EQU, NEQU,
+  AND, OR,
+  LPAREN, RPAREN, //()
+  LBRACK, RBRACK, //[]
+  LBRACE, RBRACE, //{}
+  COMMA, COLON, SEMICON, //,:;
+  ASSIGN,
+  KW_IF, KW_ELSE,
+  KW_SWITCH, KW_CASE, KW_DEFAULT,
+  KW_WHILE, KW_DO, KW_FOR,
+  KW_BREAK, KW_CONTINUE, KW_RETURN
 };
+
 enum ERROR_CODE
 {
   charwrong,strwrong,str2long,num2long,id2long,excpchar,

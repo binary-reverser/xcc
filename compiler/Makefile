@@ -2,7 +2,8 @@ TARGET=compiler
 CC=g++
 SRCS=main.cpp \
 	scanner.cpp \
-	lexial.cpp
+	lexial.cpp \
+	token.cpp
 CFLAGS=-g -Wno-deprecated
 INC=-I../include -I./include
 OBJS=$(SRCS:.c=.o)

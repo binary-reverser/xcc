@@ -17,10 +17,10 @@ Lexial::~Lexial() {
 	delete scanner;
 }
 
-SYMBOL Lexial::getSymbol(){
+TAG Lexial::getSymbol(){
 	cout<<"getSymbol() called"<<endl;
 
 
 	//todo:
-	return null;
+	return ERR;
 }
