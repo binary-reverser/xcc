@@ -3,14 +3,20 @@
 
 #include<global.h>
 #include<scanner.h>
+#include<token.h>
+
 
 class Lexial {
 private:
 	Scanner* scanner;
 public:
+	char ch;
+	Token* token;
 	Lexial(FILE* _file);
 	~Lexial();
-	TAG getSymbol();
+	bool scan(char need=0);
+	bool getSymbol();
+	void getIdOrKeyword();
 };
 
 #endif

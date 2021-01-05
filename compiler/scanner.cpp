@@ -3,20 +3,20 @@
 
 using namespace std;
 
-bool Scanner::getChar(CHAR_INFO& charInfo){
-	bool isEnd = false;
-	
+char Scanner::getChar(){
+	char ch = ' ';
+
 	if(charPos == readLen-1){
 		readLen = fread(buffer, 1, MAX_LINE_LEN, file);
 		if(readLen == 0) {
-			isEnd = true;
+			_isEnd = true;
 			goto end;
 		}
 		charPos = -1;
 	}
 
 	charPos++;
-	charInfo.ch = buffer[charPos];
+	ch = buffer[charPos];
 	
 	if(newLine){
 		colNumber = 0;
@@ -24,15 +24,13 @@ bool Scanner::getChar(CHAR_INFO& charInfo){
 	} else
 		colNumber++;
 
-	if(charInfo.ch == '\n'){
+	if(ch == '\n'){
 		lineNumber++;
 		newLine = true;
 	}
 	
-	charInfo.lineNumber = lineNumber;
-	charInfo.colNumber = colNumber;
 end:
-	return isEnd;
+	return ch;
 }
 
 Scanner::Scanner(FILE* _file){
@@ -41,6 +39,7 @@ Scanner::Scanner(FILE* _file){
 	lineNumber = 0;
 	colNumber = 0;
 	newLine = false;
+	_isEnd = false;
 	charPos = -1;
 	readLen = 0;
 }

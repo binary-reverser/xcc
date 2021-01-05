@@ -6,12 +6,17 @@
 #include<hash_map>
 #include<cstdlib>
 
+#define enum_to_string(t) #t
 class Token {
+private:
+	TAG tag;
 public:
-    TAG tag;
-    Token(TAG t); 
+	Token() {};
+    Token(TAG t) { tag = t; }; 
+	TAG getTag() { return tag; };
+	void setTag(TAG t) { tag = t; };
 	virtual ~Token() {};
-    virtual std::string toString() {};
+    virtual std::string toString() { return TagString[tag];};
 };
 
 class Id:public Token {

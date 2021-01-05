@@ -1,13 +1,15 @@
-ant
-
-char *base64_encode(char *str)  
+/*base64.c*/  
+#include <stdio.h>
+#include <string.h>
+  
+unsigned char *base64_encode(unsigned char *str)  
 {  
     long len;  
     long str_len;  
-    char *res;  
+    unsigned char *res;  
     int i,j;  
 
-    char *base64_table="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";  
+    unsigned char *base64_table="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";  
   
     str_len=strlen(str);  
     if(str_len % 3 == 0)  
@@ -15,7 +17,7 @@ char *base64_encode(char *str)
     else  
         len=(str_len/3+1)*4;  
   
-    res=malloc(sizeof(char)*len+1);  
+    res=malloc(sizeof(unsigned char)*len+1);  
     res[len]='\0';  
   
     for(i=0,j=0;i<len-2;j+=3,i+=4)  
@@ -40,7 +42,7 @@ char *base64_encode(char *str)
     return res;  
 }  
   
-char *base64_decode(char *code)  
+unsigned char *base64_decode(unsigned char *code)  
 {  
     int table[]={0,0,0,0,0,0,0,0,0,0,0,0,
     		 0,0,0,0,0,0,0,0,0,0,0,0,
@@ -57,7 +59,7 @@ char *base64_decode(char *code)
     	       };  
     long len;  
     long str_len;  
-    char *res;  
+    unsigned char *res;  
     int i,j;  
   
     len=strlen(code);  
@@ -68,14 +70,14 @@ char *base64_decode(char *code)
     else  
         str_len=len/4*3;  
   
-    res=malloc(sizeof(char)*str_len+1);  
+    res=malloc(sizeof(unsigned char)*str_len+1);  
     res[str_len]='\0';  
   
     for(i=0,j=0;i < len-2;j+=3,i+=4)  
     {  
-        res[j]=((har)table[code[i]])<<2 | (((char)table[code[i+1]])>>4); 
-        res[j+1]=(((char)table[code[i+1]])<<4) | (((char)table[code[i+2]])>>2); 
-        res[j+2]=(((char)table[code[i+2]])<<6) | ((char)table[code[i+3]]); 
+        res[j]=((unsigned char)table[code[i]])<<2 | (((unsigned char)table[code[i+1]])>>4); 
+        res[j+1]=(((unsigned char)table[code[i+1]])<<4) | (((unsigned char)table[code[i+2]])>>2); 
+        res[j+2]=(((unsigned char)table[code[i+2]])<<6) | ((unsigned char)table[code[i+3]]); 
     }  
   
     return res;  
@@ -83,7 +85,7 @@ char *base64_decode(char *code)
 
 int main(int argc,char **argv)
 {
-    char *buf =NULL;
+    unsigned char *buf =NULL;
     if(strcmp(argv[1],"-d") == 0)
     {
 	buf = base64_decode(argv[2]);

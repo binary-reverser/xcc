@@ -16,7 +16,11 @@ int main(){
 	}
 	cout<<"File opened successfully: " << sourceFileName <<endl;
 	Lexial* lexial = new Lexial(fin);
-	lexial->getSymbol();
+	bool flag = lexial->getSymbol();
+	while(flag){
+		cout<<lexial->token->toString()<<endl;
+		flag = lexial->getSymbol();
+	}
 	
 	delete lexial;
 	fclose(fin);

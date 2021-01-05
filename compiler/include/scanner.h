@@ -4,12 +4,6 @@
 
 #define MAX_LINE_LEN 100 // Maximum number of characters in a line of code
 
-struct CHAR_INFO {
-	char ch;	// the current char
-	size_t lineNumber;
-	size_t colNumber;
-};
-
 class Scanner{
 private:
 	FILE* file;
@@ -17,13 +11,17 @@ private:
 	size_t colNumber;
 	size_t charPos;
 	bool newLine;
+	bool _isEnd;
 	char buffer[MAX_LINE_LEN];
 	size_t readLen; // the number of charactors currently read into the buffer
 
 public:
 	Scanner(FILE* _file);
 	~Scanner();
-	bool getChar(CHAR_INFO&);
+	char getChar();
+	size_t getLineNumber() { return lineNumber; };
+	size_t getColNumber() { return colNumber; };
+	bool isEnd() { return _isEnd; };
 };
 
 

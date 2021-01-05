@@ -23,7 +23,31 @@ enum TAG
   KW_IF, KW_ELSE,
   KW_SWITCH, KW_CASE, KW_DEFAULT,
   KW_WHILE, KW_DO, KW_FOR,
-  KW_BREAK, KW_CONTINUE, KW_RETURN
+  KW_BREAK, KW_CONTINUE, KW_RETURN,
+  KW_EXTERN
+};
+
+static const char* TagString[] = {
+  "ERR", //error
+  "END", //the end of file
+  "ID", //identifier
+  "KW_INT", "KW_CHAR", "KW_VOID", //data type
+  "NUM", "CH", "STR", //constant
+  "NOT", "LEA", //Monocular operation
+  "ADD", "SUB", "MUL", "DIV", "MOD",
+  "INC", "DEC",
+  "GT", "GE", "LT", "LE", "EQU", "NEQU",
+  "AND", "OR", 
+  "LPAREN", "RPAREN", //()
+  "LBRACK", "RBRACK", //[]
+  "LBRACE", "RBRACE", //{}
+  "COMMA", "COLON", "SEMICON", //,:;
+  "ASSIGN",
+  "KW_IF", "KW_ELSE",
+  "KW_SWITCH", "KW_CASE", "KW_DEFAULT",
+  "KW_WHILE", "KW_DO", "KW_FOR",
+  "KW_BREAK", "KW_CONTINUE", "KW_RETURN",
+  "KW_EXTERN"
 };
 
 enum ERROR_CODE

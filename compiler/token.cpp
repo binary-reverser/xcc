@@ -2,10 +2,6 @@
 
 using namespace std;
 
-Token::Token(TAG t) {
-	tag = t;
-}
-
 Id::Id(string n):Token(ID) {
 	name = n;
 }
@@ -41,9 +37,23 @@ string Str::toString() {
 }
 
 Keywords::Keywords() {
-
+	keywords["int"] = KW_INT;
+	keywords["char"] = KW_CHAR;
+	keywords["void"] = KW_VOID;
+	keywords["extern"] = KW_EXTERN;
+	keywords["if"] = KW_IF;
+	keywords["else"] = KW_ELSE;
+	keywords["switch"] = KW_SWITCH;
+	keywords["case"] = KW_CASE;
+	keywords["default"] = KW_DEFAULT;
+	keywords["while"] = KW_WHILE;
+	keywords["do"] = KW_DO;
+	keywords["for"] = KW_FOR;
+	keywords["break"] = KW_BREAK;
+	keywords["continue"] = KW_CONTINUE;
+	keywords["return"] = KW_RETURN;
 }
 
 TAG Keywords::getTag(string name) {
-	return keywords[name];
+	return keywords.find(name)!=keywords.end()?keywords[name]:ID;
 }
