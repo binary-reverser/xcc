@@ -46,20 +46,20 @@ void Lexial::getIdOrKeyword(){
         token = new Id(name);
     }   
     else
-        token = new Token(tag);
+		token = new Token(tag);
 }
 
 bool Lexial::getSymbol(){
 	cout<<"getSymbol called"<<endl;
 	while(ch==' '||ch==10||ch==9)
 	{
-    	scan();
+		scan();
   	}
 
 	if(ch>='a'&&ch<='z'||ch>='A'&&ch<='Z'||ch=='_')
   	{
 		getIdOrKeyword();
-    	return true;
+		return true;
   	}
 
 
