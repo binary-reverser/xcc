@@ -12,6 +12,7 @@ private:
 	void getIdOrKeyword();
 	void getNumber();
 	void getChar();
+	void getStr();
 	bool scan(char need=0);
 public:
 	char ch;

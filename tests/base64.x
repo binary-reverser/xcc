@@ -4,6 +4,10 @@ ant
 
 0x1234
 
+"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
+
+"aaa
+
 0b1010
 
 075423
