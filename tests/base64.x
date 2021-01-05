@@ -23,7 +23,7 @@ char *base64_encode(char *str)
         res[i+2]=base64_table[(str[j+1]&0xf)<<2 | (str[j+2]>>6)]; 
         res[i+3]=base64_table[str[j+2]&0x3f]; 
     }  
-  
+
     switch(str_len % 3)  
     {  
         case 1:  

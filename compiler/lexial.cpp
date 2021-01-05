@@ -64,8 +64,7 @@ void Lexial::getNumber() {
 					scan();
 				} while(ch>='0'&&ch<='9'||ch>='A'&&ch<='F'||ch>='a'&&ch<='f');
 			} else {
-				cout<<"error, no number after 0x"<<endl;
-				//todo:
+				LEXERROR(NUM_HEX_TYPE);
 				token = new Token(ERR);
 				return;
 			}
@@ -77,8 +76,7 @@ void Lexial::getNumber() {
 					scan();
 				} while(ch>='0'&&ch<='1');
 			} else {
-				cout<<"error, no number after 0b"<<endl;
-				//todo:
+				LEXERROR(NUM_BIN_TYPE);
 				token = new Token(ERR);
 				return;
 			}
@@ -131,17 +129,18 @@ void Lexial::getChar() {
 		else if(ch == '0') c = '\0';
 		else if(ch == '\'') c = '\'';
 		else if(ch==-1 || ch=='\n') { //end of file or newline
-			cout<<"error, end of file or newline"<<endl;
+			LEXERROR(CHAR_NO_DATA);
 			token = new Token(ERR);
 			return;
 		}
 		else c = ch;
 	} else if(ch=='\n'||ch==-1) {
-		cout<<"error, end of file or newline"<<endl;
+		LEXERROR(CHAR_NO_DATA);
 		token = new Token(ERR);
 		return;
 	} else if(ch=='\'') { // no data
 		cout<<"no data"<<endl;
+		LEXERROR(CHAR_NO_DATA);
 		token = new Token(ERR);
 		return;
 	} else c = ch;
@@ -150,7 +149,7 @@ void Lexial::getChar() {
 		if(scan('\'')) {
 			token = new Char(c);
 		} else {
-			cout<<"no right qution"<<endl;
+			LEXERROR(CHAR_NO_R_QUTION);
 			token = new Token(ERR);
 		}
 	}
@@ -176,13 +175,13 @@ void Lexial::getDelimiter() {
 						while(scan('*'));
 						if(ch == '/') {
 							token = new Token(ERR);
-							cout<<"error in getdelimiter"<<endl;
+							LEXERROR(COMMENT_NO_END);
 							break;
 						}
 					}
 				}
 				if(!token && ch==-1){
-					cout<<"error in getdelimiter"<<endl;
+					LEXERROR(COMMENT_NO_END);
 					token = new Token(ERR);
 				}
 			} else
@@ -224,7 +223,7 @@ void Lexial::getDelimiter() {
 			token = new Token(END);break;
 		default:
 			token = new Token(ERR);
-			cout<<"error in parse delimiter"<<endl;
+			LEXERROR(TOKEN_NO_EXIST);
 			scan();
 	}
 }
@@ -265,4 +264,11 @@ bool Lexial::getToken(){
 
 void Lexial::showCurrent() {
 	scanner->showCurrent();
+}
+
+void Lexial::lexError(int code) {
+	printf("<line %zu, col %zu> lexial error: %s.\n",
+		scanner->getLineNumber(),
+		scanner->getColNumber(),
+		lexErrorTable[code]);
 }

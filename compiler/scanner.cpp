@@ -46,7 +46,7 @@ void Scanner::showCurrent(){
 Scanner::Scanner(FILE* _file){
 	file = _file;
 	fseek(file, 0, SEEK_SET);
-	lineNumber = 1;
+	lineNumber = 0;
 	colNumber = 0;
 	newLine = false;
 	_isEnd = false;
