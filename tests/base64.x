@@ -1,5 +1,13 @@
 ant
 
+184
+
+0x1234
+
+0b1010
+
+075423
+
 char *base64_encode(char *str)  
 {  
     long len;  

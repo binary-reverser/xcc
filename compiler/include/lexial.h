@@ -9,14 +9,15 @@
 class Lexial {
 private:
 	Scanner* scanner;
+	void getIdOrKeyword();
+	void getNumber();
+	bool scan(char need=0);
 public:
 	char ch;
 	Token* token;
 	Lexial(FILE* _file);
 	~Lexial();
-	bool scan(char need=0);
 	bool getSymbol();
-	void getIdOrKeyword();
 };
 
 #endif

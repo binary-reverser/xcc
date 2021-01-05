@@ -15,7 +15,7 @@ Num::Num(int v):Token(NUM) {
 }
 
 string Num::toString() {
-	to_string(val);
+	return to_string(val);
 }
 
 Char::Char(char c):Token(CH) {
