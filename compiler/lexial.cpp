@@ -17,15 +17,13 @@ Lexial::~Lexial() {
 bool Lexial::scan(char need) {
 	ch = scanner->getChar();
 
-	if(scanner->isEnd())
-		return false;
+	if(scanner->isEnd()) return false;
 
 	if(need) {
-		if(ch != need)
-			return false;
+		if(ch != need) return false;
 
-		ch = scanner->getChar();;
-		return true;
+		ch = scanner->getChar();
+		if(scanner->isEnd()) return false;
 	}
 
 	return true;
@@ -42,11 +40,8 @@ void Lexial::getIdOrKeyword(){
     } while(ch>='a'&&ch<='z'||ch>='A'&&ch<='Z'||ch=='_'||ch>='0'&&ch<='9');
             
     TAG tag = keywords.getTag(name);
-    if(tag == ID) {
-		token = new Id(name);
-    }   
-    else
-		token = new Token(tag);
+    if(tag == ID) token = new Id(name);   
+    else token = new Token(tag);
 }
 
 void Lexial::getNumber() {
@@ -156,7 +151,6 @@ bool Lexial::getSymbol(){
 		getChar();
 		return true;
 	}
-
 
 	//todo:
 	return false;
