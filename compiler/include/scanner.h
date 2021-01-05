@@ -22,6 +22,7 @@ public:
 	size_t getLineNumber() { return lineNumber; };
 	size_t getColNumber() { return colNumber; };
 	bool isEnd() { return _isEnd; };
+	void showCurrent();
 };
 
 

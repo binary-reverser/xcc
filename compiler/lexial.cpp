@@ -156,11 +156,86 @@ void Lexial::getChar() {
 	}
 }
 
-bool Lexial::getSymbol(){
+void Lexial::getDelimiter() {
+	switch(ch) {
+		case '+':
+			token = new Token(scan('+')?INC:ADD);break;
+		case '-':
+			token = new Token(scan('-')?DEC:SUB);break;
+		case '*':
+			token = new Token(MUL);scan();break;
+		case '/':
+			scan();
+			if(ch == '/') { // single line annotate
+				while(!(ch=='\n'||ch==-1))
+					scan();
+				token = new Token(ERR);
+			} else if(ch == '*') { // multi line annotate
+				while(!scan(-1)) {
+					if(ch == '*') {
+						while(scan('*'));
+						if(ch == '/') {
+							token = new Token(ERR);
+							cout<<"error in getdelimiter"<<endl;
+							break;
+						}
+					}
+				}
+				if(!token && ch==-1){
+					cout<<"error in getdelimiter"<<endl;
+					token = new Token(ERR);
+				}
+			} else
+				token = new Token(DIV);
+			break;
+		case '%':
+			token = new Token(MOD);scan();break;
+		case '>':
+			token = new Token(scan('=')?GE:GT);break;
+		case '<':
+			token = new Token(scan('=')?LE:LT);break;
+		case '=':
+			token = new Token(scan('=')?EQU:ASSIGN);break;
+		case '&':
+			token = new Token(scan('&')?AND:LEA);break;
+		case '|':
+			token = new Token(scan('|')?LOGIC_OR:BIT_OR);break;
+		case '!':
+			token = new Token(scan('=')?NEQU:NOT);break;
+		case ',':
+			token = new Token(COMMA);scan();break;
+		case ':':
+			token = new Token(COLON);scan();break;
+		case ';':
+			token = new Token(SEMICON);scan();break;
+		case '(':
+			token = new Token(LPAREN);scan();break;
+		case ')':
+			token = new Token(RPAREN);scan();break;
+		case '[':
+			token = new Token(LBRACK);scan();break;
+		case ']':
+			token = new Token(RBRACK);scan();break;
+		case '{':
+			token = new Token(LBRACE);scan();break;
+		case '}':
+			token = new Token(RBRACE);scan();break;
+		case -1:
+			token = new Token(END);break;
+		default:
+			token = new Token(ERR);
+			cout<<"error in parse delimiter"<<endl;
+			scan();
+	}
+}
+
+bool Lexial::getToken(){
 	delete token;
 	token = nullptr;
+	
+	if(ch == -1)
+		return false; // the end
 
-	cout<<"getSymbol called"<<endl;
 	while(ch==' '||ch==10||ch==9)
 	{
 		scan();
@@ -179,8 +254,15 @@ bool Lexial::getSymbol(){
 	} else if(ch == '\"') {
 		getStr();
 		return true;
+	} else {
+		getDelimiter();
+		return true;
 	}
 
 	//todo:
 	return false;
 	}
+
+void Lexial::showCurrent() {
+	scanner->showCurrent();
+}

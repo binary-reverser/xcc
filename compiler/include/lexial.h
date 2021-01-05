@@ -13,13 +13,15 @@ private:
 	void getNumber();
 	void getChar();
 	void getStr();
+	void getDelimiter();
 	bool scan(char need=0);
 public:
 	char ch;
 	Token* token;
 	Lexial(FILE* _file);
 	~Lexial();
-	bool getSymbol();
+	bool getToken();
+	void showCurrent();
 };
 
 #endif

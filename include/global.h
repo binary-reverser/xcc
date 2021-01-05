@@ -14,7 +14,7 @@ enum TAG
   ADD, SUB, MUL, DIV, MOD,
   INC, DEC,
   GT, GE, LT, LE, EQU, NEQU,
-  AND, OR,
+  AND, OR, LOGIC_OR, BIT_OR,
   LPAREN, RPAREN, //()
   LBRACK, RBRACK, //[]
   LBRACE, RBRACE, //{}
@@ -37,7 +37,7 @@ static const char* TagString[] = {
   "ADD", "SUB", "MUL", "DIV", "MOD",
   "INC", "DEC",
   "GT", "GE", "LT", "LE", "EQU", "NEQU",
-  "AND", "OR", 
+  "AND", "OR", "LOGIC_OR", "BIT_OR",
   "LPAREN", "RPAREN", //()
   "LBRACK", "RBRACK", //[]
   "LBRACE", "RBRACE", //{}

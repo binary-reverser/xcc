@@ -1,23 +1,3 @@
-ant
-
-184
-
-0x1234
-
-"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
-
-"aaa
-
-0b1010
-
-075423
-
-'a' 'c' '\\' '\n'
-
-'\0'
-
-''
-
 char *base64_encode(char *str)  
 {  
     long len;  

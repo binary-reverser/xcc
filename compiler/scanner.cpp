@@ -6,10 +6,16 @@ using namespace std;
 char Scanner::getChar(){
 	char ch = ' ';
 
+	if(_isEnd) {
+		ch = -1;
+		goto end;
+	}
+
 	if(charPos == readLen-1){
 		readLen = fread(buffer, 1, MAX_LINE_LEN, file);
 		if(readLen == 0) {
 			_isEnd = true;
+			ch = -1;
 			goto end;
 		}
 		charPos = -1;
@@ -33,10 +39,14 @@ end:
 	return ch;
 }
 
+void Scanner::showCurrent(){
+	cout<<lineNumber<<"-"<<colNumber<<":\""<<buffer<<"\":at " <<charPos<<endl;
+}
+
 Scanner::Scanner(FILE* _file){
 	file = _file;
 	fseek(file, 0, SEEK_SET);
-	lineNumber = 0;
+	lineNumber = 1;
 	colNumber = 0;
 	newLine = false;
 	_isEnd = false;
@@ -47,3 +57,4 @@ Scanner::Scanner(FILE* _file){
 Scanner::~Scanner(){
 	file = nullptr;
 }
+
