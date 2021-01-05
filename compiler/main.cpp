@@ -17,7 +17,7 @@ int main(){
 	cout<<"File opened successfully: " << sourceFileName <<endl;
 	Lexial* lexial = new Lexial(fin);
 	bool flag = lexial->getSymbol();
-	while(flag){
+	while(flag && lexial->token->getTag() != ERR){
 		cout<<lexial->token->toString()<<endl;
 		flag = lexial->getSymbol();
 	}

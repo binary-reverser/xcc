@@ -8,6 +8,12 @@ ant
 
 075423
 
+'a' 'c' '\\' '\n'
+
+'\0'
+
+''
+
 char *base64_encode(char *str)  
 {  
     long len;  

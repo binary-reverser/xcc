@@ -24,8 +24,8 @@ bool Lexial::scan(char need) {
 		if(ch != need)
 			return false;
 
-		//ch = scanner->getChar();;
-		//return true;
+		ch = scanner->getChar();;
+		return true;
 	}
 
 	return true;
@@ -98,6 +98,43 @@ void Lexial::getNumber() {
 	token = new Num(val);
 }
 
+void Lexial::getChar() {
+	char c;
+
+	scan();
+	if(ch == '\\') {
+		scan();
+		if(ch == 'n') c = '\n';
+		else if(ch == '\\') c = '\\';
+		else if(ch == 't') c = '\t';
+		else if(ch == '0') c = '\0';
+		else if(ch == '\'') c = '\'';
+		else if(ch==-1 || ch=='\n') { //end of file or newline
+			cout<<"error, end of file or newline"<<endl;
+			token = new Token(ERR);
+			return;
+		}
+		else c = ch;
+	} else if(ch=='\n'||ch==-1) {
+		cout<<"error, end of file or newline"<<endl;
+		token = new Token(ERR);
+		return;
+	} else if(ch=='\'') { // no data
+		cout<<"no data"<<endl;
+		token = new Token(ERR);
+		return;
+	} else c = ch;
+	
+	if(!token) {
+		if(scan('\'')) {
+			token = new Char(c);
+		} else {
+			cout<<"no right qution"<<endl;
+			token = new Token(ERR);
+		}
+	}
+}
+
 bool Lexial::getSymbol(){
 	delete token;
 	token = nullptr;
@@ -114,6 +151,9 @@ bool Lexial::getSymbol(){
 		return true;
   	} else if(ch>='0'&&ch<='9'){
 		getNumber();
+		return true;
+	} else if(ch=='\'') {
+		getChar();
 		return true;
 	}
 

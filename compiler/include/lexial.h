@@ -11,6 +11,7 @@ private:
 	Scanner* scanner;
 	void getIdOrKeyword();
 	void getNumber();
+	void getChar();
 	bool scan(char need=0);
 public:
 	char ch;
